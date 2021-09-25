@@ -7,16 +7,15 @@ let logger = require('morgan');
 let mongoose = require('mongoose')
 let indexRouter = require('./routes/index');
 let usersRouter = require('./routes/users');
-
+let secrets = require('./secrets')
 let app = express();
 
 app.use(cors())
 
 mongoose.Promise = global.Promise
 
-const mongoConnectionStringDev = 'mongodb+srv://git-colab-admin:doritos1@cluster0.sjgxb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
-mongoose.connect(mongoConnectionStringDev, { useNewUrlParser: true, useUnifiedTopology: true }).then(
+mongoose.connect(secrets.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true }).then(
   () => { console.log('Connected to Db dev') },
   err => { console.log(err) }
 )
