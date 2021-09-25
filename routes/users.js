@@ -3,7 +3,7 @@ var router = express.Router();
 const User = require('../models/User')
 
 /* GET users listing. */
-router.get('/',  function (req, res, next) {
+router.get('/', function (req, res, next) {
 
   User.
     find()
@@ -15,17 +15,16 @@ router.get('/',  function (req, res, next) {
         res.json(data)
       }
     })
-
 });
 
 
 router.post('/', (req, res) => {
- 
+  console.log(req.body)
   let user = new User({
-    firstName:req.body.firstName,
+    firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
-    password:req.body.password
+    password: req.body.password
   })
 
   user.save((err, data) => {
@@ -35,12 +34,9 @@ router.post('/', (req, res) => {
       res.json(data)
     }
   })
-
-
 })
 
 router.delete('/:userId', (req, res) => {
-  
   User
     .where('id').equals(req.params.id)
     .remove()
@@ -54,7 +50,6 @@ router.delete('/:userId', (req, res) => {
 })
 
 router.get('/:userId', (req, res) => {
-
   User
     .where('id').equals(req.params.id)
     .exec((err, data) => {

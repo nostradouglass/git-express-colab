@@ -5,9 +5,12 @@ let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 let mongoose = require('mongoose')
-
 let indexRouter = require('./routes/index');
 let usersRouter = require('./routes/users');
+
+let app = express();
+
+app.use(cors())
 
 mongoose.Promise = global.Promise
 
@@ -18,7 +21,6 @@ mongoose.connect(mongoConnectionStringDev, { useNewUrlParser: true, useUnifiedTo
   err => { console.log(err) }
 )
 
-let app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
