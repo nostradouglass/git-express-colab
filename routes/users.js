@@ -60,6 +60,20 @@ router.get('/:userId', (req, res) => {
       }
     })
 
+  router.get('/findUserByFirstName/:name'), (req, res) => {
+    User
+    .where('firstName').equals(req.params.firstName)
+    .exec((err, data) => {
+      if(err) {
+        res.send(err)
+      }
+      else {
+        console.log(data);
+        res.json(data)
+      }
+    })
+  }
+
 })
 
 module.exports = router;
