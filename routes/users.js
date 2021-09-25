@@ -38,7 +38,7 @@ router.post('/', (req, res) => {
 
 router.delete('/:userId', (req, res) => {
   User
-    .where('id').equals(req.params.id)
+    .where('_id').equals(req.params.userId)
     .remove()
     .exec((err, data) => {
       if (err) {
