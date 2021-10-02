@@ -5,6 +5,8 @@ const User = require('../models/User')
 /* GET users listing. */
 router.get('/', function (req, res, next) {
 
+  console.log("first route was hit");
+
   User.
     find()
     .lean()
@@ -60,7 +62,8 @@ router.get('/:userId', (req, res) => {
       }
     })
 
-  router.get('/findUserByFirstName/:name'), (req, res) => {
+  router.get('/findUserByFirstName/:firstName'), (req, res) => {
+    console.log("find has been reached")
     User
     .where('firstName').equals(req.params.firstName)
     .exec((err, data) => {
