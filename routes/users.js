@@ -4,7 +4,6 @@ const User = require('../models/User')
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
-
   User.
     find()
     .lean()
@@ -46,7 +45,6 @@ router.delete('/:userId', (req, res) => {
        console.log("removed User: " , docs);
      }
   })
-
 })
 
 router.get('/:userId', (req, res) => {
@@ -59,7 +57,21 @@ router.get('/:userId', (req, res) => {
         res.json(data[0])
       }
     })
+  })
 
-})
+  router.get('/findUserByFirstName/:firstName', (req, res) => {
+    User
+    .where('firstName').equals(req.params.firstName)
+    .exec((err, data) => {
+      if(err) {
+        res.send(err)
+      }
+      else {
+        console.log(data);
+        res.json(data)
+      }
+    })
+  })
+
 
 module.exports = router;
