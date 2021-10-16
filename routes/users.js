@@ -4,9 +4,6 @@ const User = require('../models/User')
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
-
-  console.log("first route was hit");
-
   User.
     find()
     .lean()
@@ -61,9 +58,9 @@ router.get('/:userId', (req, res) => {
         res.json(data[0])
       }
     })
+  })
 
-  router.get('/findUserByFirstName/:firstName'), (req, res) => {
-    console.log("find has been reached")
+  router.get('/findUserByFirstName/:firstName', (req, res) => {
     User
     .where('firstName').equals(req.params.firstName)
     .exec((err, data) => {
@@ -75,8 +72,7 @@ router.get('/:userId', (req, res) => {
         res.json(data)
       }
     })
-  }
+  })
 
-})
 
 module.exports = router;
