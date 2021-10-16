@@ -37,15 +37,14 @@ router.post('/', (req, res) => {
 
 router.delete('/:userId', (req, res) => {
   User
-    .where('_id').equals(req.params.userId)
-    .remove()
-    .exec((err, data) => {
-      if (err) {
-        res.send(err)
-      } else {
-        res.json(data)
-      }
-    })
+  .findByIdAndRemove(req.params.userId, (err, docs) => {
+    if(err) {
+      console.log(err)
+    }
+     else {
+       console.log("removed User: " , docs);
+     }
+  })
 })
 
 router.get('/:userId', (req, res) => {
