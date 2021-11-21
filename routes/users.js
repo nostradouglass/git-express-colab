@@ -49,7 +49,7 @@ router.delete('/:userId', (req, res) => {
 
 router.get('/:userId', (req, res) => {
   User
-    .where('id').equals(req.params.id)
+    .where('_id').equals(req.params.userId)
     .exec((err, data) => {
       if (err) {
         res.send(err)
