@@ -43,6 +43,7 @@ router.delete('/:userId', (req, res) => {
     }
      else {
        console.log("removed User: " , docs);
+       res.json({"message": `User with id ${req.params.userId} deleted`})
      }
   })
 })
